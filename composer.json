@@ -1,0 +1,26 @@
+{
+    "name": "denismitr/spam-detector",
+    "description": "PHP Spam Detector",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denis Mitrofanov",
+            "email": "denis.mitr@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0,<7.2"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^4.0.2"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Denismitr\\Spam\\": "src/"
+        }
+    }
+}
