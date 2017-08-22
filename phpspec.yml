@@ -1,4 +1,4 @@
 suites:
-    spam_suite:
+    denismitr_suite:
         namespace: Denismitr\Spam
         psr4_prefix: Denismitr\Spam
