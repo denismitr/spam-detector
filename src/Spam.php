@@ -8,8 +8,15 @@ use Psr\Log\InvalidArgumentException;
 
 class Spam
 {
+    /**
+     * @var array
+     */
     private $inspections;
 
+    /**
+     * Spam constructor.
+     * @param array $inspections
+     */
     public function __construct(array $inspections)
     {
         if (empty($inspections)) {
@@ -19,6 +26,9 @@ class Spam
         $this->inspections = $inspections;
     }
 
+    /**
+     * @param string $text
+     */
     public function detect(string $text)
     {
         foreach ($this->inspections as $inspection) {
@@ -26,21 +36,9 @@ class Spam
         }
     }
 
-    private function getInspectionInstance(string $inspection) : Inspection
-    {
-        if ( ! class_exists($inspection) ) {
-            throw new InvalidArgumentException("{$inspection} class does not exist!");
-        }
-
-        $instance = new $inspection;
-
-        if ( ! $instance instanceof Inspection ) {
-            throw new \TypeError("{$inspection} does not implement the Inspection interface");
-        }
-
-        return $instance;
-    }
-
+    /**
+     * @param array $items
+     */
     public function detectAny(array $items)
     {
         foreach ($this->inspections as $inspection) {
@@ -52,6 +50,10 @@ class Spam
         }
     }
 
+    /**
+     * @param array $fields
+     * @throws SpamDetected
+     */
     public function detectAll(array $fields)
     {
         $detected = [];
@@ -67,5 +69,34 @@ class Spam
         if ( count($detected) === count($fields) ) {
             throw new SpamDetected("Spam detected for all input fields");
         }
+    }
+
+    /**
+     * @param string $text
+     * @param Inspection $inspection
+     */
+    public function inspect(string $text, Inspection $inspection)
+    {
+        $inspection->detect($text);
+    }
+
+    /**
+     * @param string $inspection
+     * @return Inspection
+     * @throws \TypeError
+     */
+    private function getInspectionInstance(string $inspection) : Inspection
+    {
+        if ( ! class_exists($inspection) ) {
+            throw new InvalidArgumentException("{$inspection} class does not exist!");
+        }
+
+        $instance = new $inspection;
+
+        if ( ! $instance instanceof Inspection ) {
+            throw new \TypeError("{$inspection} does not implement the Inspection interface");
+        }
+
+        return $instance;
     }
 }

@@ -3,6 +3,7 @@
 namespace spec\Denismitr\Spam;
 
 use Denismitr\Spam\Exceptions\SpamDetected;
+use Denismitr\Spam\Inspections\AsciiOnly;
 use Denismitr\Spam\Inspections\RussianBadWords;
 use Denismitr\Spam\Inspections\RussianForbiddenWords;
 use Denismitr\Spam\Inspections\KeyHeldDown;
@@ -124,6 +125,20 @@ class SpamSpec extends ObjectBehavior
         ];
 
         $this->shouldNotThrow(SpamDetected::class)->duringDetectAll($fields);
+    }
+
+    public function it_can_detect_spam_with_a_particlular_inspection()
+    {
+        $this->beConstructedWith([
+            YahooCustomerSupport::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
+            KeyHeldDown::class
+        ]);
+
+        $text = 'It is an only ascii text!';
+
+        $this->shouldThrow()->duringInspect($text, new AsciiOnly);
     }
 
     function it_does_not_throw_on_normal_text()
