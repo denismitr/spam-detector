@@ -3,6 +3,7 @@
 namespace spec\Denismitr\Spam;
 
 use Denismitr\Spam\Exceptions\SpamDetected;
+use Denismitr\Spam\Inspections\BadWords;
 use Denismitr\Spam\Inspections\ForbiddenWords;
 use Denismitr\Spam\Inspections\KeyHeldDown;
 use Denismitr\Spam\Inspections\YahooCustomerSupport;
@@ -39,6 +40,7 @@ class SpamSpec extends ObjectBehavior
         $this->beConstructedWith([
             YahooCustomerSupport::class,
             ForbiddenWords::class,
+            BadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -50,6 +52,7 @@ class SpamSpec extends ObjectBehavior
         $this->beConstructedWith([
             YahooCustomerSupport::class,
             ForbiddenWords::class,
+            BadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -61,6 +64,7 @@ class SpamSpec extends ObjectBehavior
         $this->beConstructedWith([
             YahooCustomerSupport::class,
             ForbiddenWords::class,
+            BadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -75,6 +79,7 @@ class SpamSpec extends ObjectBehavior
         $this->beConstructedWith([
             YahooCustomerSupport::class,
             ForbiddenWords::class,
+            BadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -90,6 +95,7 @@ class SpamSpec extends ObjectBehavior
         $this->beConstructedWith([
             YahooCustomerSupport::class,
             ForbiddenWords::class,
+            BadWords::class,
             KeyHeldDown::class
         ]);
 

@@ -10,39 +10,12 @@ use Prophecy\Argument;
 
 class ForbiddenWordsSpec extends ObjectBehavior
 {
-    protected $forbidden = [
-        'мразь',
-        'блядь',
-        'шлюха',
-        'шлюхи',
-        'шлюхой',
-        'проститутка',
-        'проститутки',
-        'проституткой',
-        ' хуй ',
-        ' хуя ',
-        ' хер ',
-        'хуевый',
-        'пизда',
-        'сволочь',
-        'пиздец',
-        'наркота',
-        'наркотики',
-        'героин',
-        'кокаин',
-        'марихуана',
-        'ублюдок',
-        'отсосать',
-        'отъебать',
-        'избить',
-        'жопа',
-        'жопу',
-        'ебать',
-        ' ебло ',
-        'выебать',
-        'porno',
-        'порно'
-    ];
+    protected $forbidden;
+
+    public function let()
+    {
+        $this->forbidden = (new ForbiddenWords)->getForbiddenWords();
+    }
 
     function it_is_initializable()
     {

@@ -10,12 +10,6 @@ class ForbiddenWords implements Inspection
     protected $forbidden = [
         'мразь',
         'блядь',
-        'шлюха',
-        'шлюхи',
-        'шлюхой',
-        'проститутка',
-        'проститутки',
-        'проституткой',
         ' хуй ',
         ' хуя ',
         ' хер ',
