@@ -4,22 +4,22 @@ namespace spec\Denismitr\Spam\Inspections;
 
 use Denismitr\Spam\Contracts\Inspection;
 use Denismitr\Spam\Exceptions\SpamDetected;
-use Denismitr\Spam\Inspections\BadWords;
+use Denismitr\Spam\Inspections\RussianBadWords;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class BadWordsSpec extends ObjectBehavior
+class RussianBadWordsSpec extends ObjectBehavior
 {
     protected $bad;
 
     public function let()
     {
-        $this->bad = (new BadWords())->getBadWords();
+        $this->bad = (new RussianBadWords())->getBadWords();
     }
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(BadWords::class);
+        $this->shouldHaveType(RussianBadWords::class);
         $this->shouldImplement(Inspection::class);
     }
 

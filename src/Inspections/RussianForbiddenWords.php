@@ -5,7 +5,7 @@ namespace Denismitr\Spam\Inspections;
 use Denismitr\Spam\Contracts\Inspection;
 use Denismitr\Spam\Exceptions\SpamDetected;
 
-class ForbiddenWords implements Inspection
+class RussianForbiddenWords implements Inspection
 {
     protected $forbidden = [
         'мразь',
@@ -32,7 +32,12 @@ class ForbiddenWords implements Inspection
         ' ебло ',
         'выебать',
         'porno',
-        'порно'
+        'порно',
+        'дешевые шлюхи',
+        'лучшие шлюхи',
+        'шлюхи москвы',
+        'ночь со шлюхой',
+        'трахнуть шлюхю',
     ];
 
     public function detect(string $text)

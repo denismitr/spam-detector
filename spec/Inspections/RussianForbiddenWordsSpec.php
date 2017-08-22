@@ -4,22 +4,22 @@ namespace spec\Denismitr\Spam\Inspections;
 
 use Denismitr\Spam\Contracts\Inspection;
 use Denismitr\Spam\Exceptions\SpamDetected;
-use Denismitr\Spam\Inspections\ForbiddenWords;
+use Denismitr\Spam\Inspections\RussianForbiddenWords;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ForbiddenWordsSpec extends ObjectBehavior
+class RussianForbiddenWordsSpec extends ObjectBehavior
 {
     protected $forbidden;
 
     public function let()
     {
-        $this->forbidden = (new ForbiddenWords)->getForbiddenWords();
+        $this->forbidden = (new RussianForbiddenWords)->getForbiddenWords();
     }
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(ForbiddenWords::class);
+        $this->shouldHaveType(RussianForbiddenWords::class);
         $this->shouldImplement(Inspection::class);
     }
 

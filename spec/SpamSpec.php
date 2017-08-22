@@ -3,8 +3,8 @@
 namespace spec\Denismitr\Spam;
 
 use Denismitr\Spam\Exceptions\SpamDetected;
-use Denismitr\Spam\Inspections\BadWords;
-use Denismitr\Spam\Inspections\ForbiddenWords;
+use Denismitr\Spam\Inspections\RussianBadWords;
+use Denismitr\Spam\Inspections\RussianForbiddenWords;
 use Denismitr\Spam\Inspections\KeyHeldDown;
 use Denismitr\Spam\Inspections\YahooCustomerSupport;
 use Denismitr\Spam\Spam;
@@ -39,8 +39,8 @@ class SpamSpec extends ObjectBehavior
     {
         $this->beConstructedWith([
             YahooCustomerSupport::class,
-            ForbiddenWords::class,
-            BadWords::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -51,8 +51,8 @@ class SpamSpec extends ObjectBehavior
     {
         $this->beConstructedWith([
             YahooCustomerSupport::class,
-            ForbiddenWords::class,
-            BadWords::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -63,8 +63,8 @@ class SpamSpec extends ObjectBehavior
     {
         $this->beConstructedWith([
             YahooCustomerSupport::class,
-            ForbiddenWords::class,
-            BadWords::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
             KeyHeldDown::class
         ]);
 
@@ -78,24 +78,60 @@ class SpamSpec extends ObjectBehavior
     {
         $this->beConstructedWith([
             YahooCustomerSupport::class,
-            ForbiddenWords::class,
-            BadWords::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
             KeyHeldDown::class
         ]);
 
-        $words = (new ForbiddenWords)->getForbiddenWords();
+        $words = (new RussianForbiddenWords)->getForbiddenWords();
 
         foreach ($words as $word) {
             $this->shouldThrow(SpamDetected::class)->duringDetect("Всякий текст " . $word . " ещё текст");
         }
     }
 
+    public function it_throws_only_when_all_fields_have_spam()
+    {
+        $this->beConstructedWith([
+            YahooCustomerSupport::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
+            KeyHeldDown::class
+        ]);
+
+        $fields = [
+            'body' => 'паганая блядь',
+            'title' => 'уху!!!!!!!',
+            'name' => 'проститутка проституткой травка вот так!'
+        ];
+
+        $this->shouldThrow(SpamDetected::class)->duringDetectAll($fields);
+    }
+
+    public function it_does_not_throw_if_only_some_of_fields_have_spam()
+    {
+        $this->beConstructedWith([
+            YahooCustomerSupport::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
+            KeyHeldDown::class
+        ]);
+
+        $fields = [
+            'body' => 'паганая блядь',
+            'title' => 'уху!!!!!!!',
+            'name' => 'normal name'
+        ];
+
+        $this->shouldNotThrow(SpamDetected::class)->duringDetectAll($fields);
+    }
+
     function it_does_not_throw_on_normal_text()
     {
         $this->beConstructedWith([
             YahooCustomerSupport::class,
-            ForbiddenWords::class,
-            BadWords::class,
+            RussianForbiddenWords::class,
+            RussianBadWords::class,
             KeyHeldDown::class
         ]);
 

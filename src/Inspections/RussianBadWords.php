@@ -5,7 +5,7 @@ namespace Denismitr\Spam\Inspections;
 use Denismitr\Spam\Contracts\Inspection;
 use Denismitr\Spam\Exceptions\SpamDetected;
 
-class BadWords implements Inspection
+class RussianBadWords implements Inspection
 {
     protected $bad = [
         'сука',
@@ -13,7 +13,10 @@ class BadWords implements Inspection
         'травка',
         'bitch',
         'проститутки',
-        'шлюхи'
+        'проститутка',
+        'проституткой',
+        'шлюхи',
+        'шлюха'
     ];
 
     protected $matchCount = 0;

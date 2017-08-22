@@ -3,6 +3,7 @@
 namespace Denismitr\Spam;
 
 use Denismitr\Spam\Contracts\Inspection;
+use Denismitr\Spam\Exceptions\SpamDetected;
 use Psr\Log\InvalidArgumentException;
 
 class Spam
@@ -48,6 +49,23 @@ class Spam
             foreach ($items as $text) {
                 $spamInspection->detect($text);
             }
+        }
+    }
+
+    public function detectAll(array $fields)
+    {
+        $detected = [];
+
+        foreach ($fields as $key => $body) {
+            try {
+                $this->detect($body);
+            } catch (SpamDetected $e) {
+                $detected[$key] = true;
+            }
+        }
+
+        if ( count($detected) === count($fields) ) {
+            throw new SpamDetected("Spam detected for all input fields");
         }
     }
 }
