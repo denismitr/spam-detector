@@ -33,9 +33,7 @@ class RussianBadWordsSpec extends ObjectBehavior
                     $this->bad[$keys[0]]  .
                     "Всякий текст " .
                     $this->bad[$keys[1]] .
-                    " ещё текст" .
-                    $this->bad[$keys[2]] .
-                    " много текста"
+                    " ещё текст"
                 );
 
     }
@@ -48,10 +46,7 @@ class RussianBadWordsSpec extends ObjectBehavior
             ->shouldNotThrow(SpamDetected::class)
             ->duringDetect(
                 $this->bad[$keys[0]] .
-                "Всякий текст " .
-                $this->bad[$keys[1]] .
-                " ещё текст" .
-                " много текста"
+                "Всякий текст "
             );
     }
 }

@@ -21,7 +21,7 @@ class RussianBadWords implements Inspection
 
     protected $matchCount = 0;
 
-    const LIMIT = 3;
+    const LIMIT = 2;
 
     public function detect(string $text)
     {
