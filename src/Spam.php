@@ -37,6 +37,8 @@ class Spam
     }
 
     /**
+     * See if any of the given fields contain spam
+     *
      * @param array $items
      */
     public function detectAny(array $items)
@@ -75,7 +77,7 @@ class Spam
      * @param string $text
      * @param Inspection $inspection
      */
-    public function inspect(string $text, Inspection $inspection)
+    public static function inspect(string $text, Inspection $inspection)
     {
         $inspection->detect($text);
     }

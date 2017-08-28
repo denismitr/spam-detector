@@ -15,7 +15,9 @@ class EnglishForbiddenWords implements Inspection
         'fuck',
         'shit',
         'free sex',
-        'blow job'
+        'blow job',
+        'asshole',
+        'poop'
     ];
 
     public function detect(string $text)
