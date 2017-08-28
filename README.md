@@ -70,6 +70,7 @@ try {
 Another usecase is when you want to check against only one inspection. For this case there is
 a static method __inspect__ that accepts a string for a haystack and the Inspection __instance__ like so:
 
+```
 $text = 'Some text to check';
 
 try {
@@ -77,6 +78,7 @@ try {
 } catch(SpamDetected $e) {
     // Do stuff
 }
+```
 
 ------------------------------------------------------------------------------------
 
