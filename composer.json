@@ -10,10 +10,10 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0,<7.2"
+        "php": "^7.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^4.0.2"
+        "phpspec/phpspec": "^4.3@dev"
     },
     "config": {
         "bin-dir": "bin"
